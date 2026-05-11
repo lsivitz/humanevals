@@ -86,8 +86,8 @@ export default function Home() {
 
               <img
                 className="poster-image"
-                src="/recruiter-poster.svg"
-                alt="Front-facing recruiter video poster inside the Humanevals recording interface"
+                src="/recruiter-portrait.jpg"
+                alt="Photorealistic front-facing recruiter video portrait inside the Humanevals recording interface"
               />
 
               <div className="video-gradient" />
