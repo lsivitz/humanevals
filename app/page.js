@@ -1,40 +1,37 @@
-const HOW_IT_WORKS = [
+const PROCESS_STEPS = [
   {
-    title: "Answer one concrete question",
-    body: "Record a short response to a prompt that reveals how you actually recruit, not how you write about it.",
+    title: "Record",
+    body: "One focused answer.",
   },
   {
-    title: "Get seen in context",
-    body: "Every recruiter answers the same prompt, so the comparison feels legible instead of performative.",
+    title: "Review",
+    body: "Approve the profile.",
   },
   {
-    title: "Show up for hiring teams",
-    body: "Strong answers become discoverable to teams hiring recruiters who want signal fast.",
+    title: "Discover",
+    body: "Get seen by hiring teams.",
   },
 ];
 
-const DISCOVERY_SIGNALS = [
+const HIRING_TEAM_SIGNALS = [
   {
-    label: "Recruiter-first",
-    title: "Built for the people being evaluated",
-    body: "The page leads with the recruiter action, not buyer dashboards or vague marketplace promises.",
+    label: "Sourcing judgment",
+    body: "How they define the market and choose where to search first.",
   },
   {
-    label: "High-signal",
-    title: "One prompt. Real judgment.",
-    body: "A concrete sourcing question makes the product understandable in a second and gives the interface a real center of gravity.",
+    label: "Market fluency",
+    body: "Whether their answer shows real pattern recognition.",
   },
   {
-    label: "Shippable",
-    title: "A landing page that can grow into the product",
-    body: "The hero, CTA, and below-the-fold sections are all grounded in flows that can become real screens rather than dead-end mockups.",
+    label: "Communication",
+    body: "How clearly they explain tradeoffs and next steps.",
   },
 ];
 
 const TRUST_MARKERS = [
   "Invite-only beta",
-  "Standardized recruiter prompts",
-  "Hiring-team discovery",
+  "Profiles reviewed before sharing",
+  "Built for recruiter discovery",
 ];
 
 export default function Home() {
@@ -48,7 +45,7 @@ export default function Home() {
           Humanevals
         </a>
         <a className="nav-link" href="/record">
-          Sign up
+          Apply
         </a>
       </header>
 
@@ -62,25 +59,11 @@ export default function Home() {
 
         <div className="hero-stage">
           <div className="stage-frame">
-            <div className="stage-meta">
-              <span className="meta-pill meta-pill-live">
-                <span className="live-dot" />
-                Recording preview
-              </span>
-              <span className="meta-pill">Prompt 01 of 01</span>
-            </div>
-
             <div className="video-surface">
               <div className="video-hud">
                 <div className="prompt-bubble">
-                  <span className="prompt-label">Prompt</span>
+                  <span className="prompt-label">Question</span>
                   <p>How do you approach candidate sourcing?</p>
-                </div>
-
-                <div className="discovery-chip">
-                  <span className="discovery-label">Discovery cue</span>
-                  <strong>142 profile views</strong>
-                  <span className="discovery-note">Previewed by hiring teams</span>
                 </div>
               </div>
 
@@ -93,30 +76,14 @@ export default function Home() {
               <div className="video-gradient" />
               <div className="viewfinder" aria-hidden="true" />
 
-              <div className="poster-caption">
-                <span className="caption-kicker">Recruiter response</span>
-                <p>
-                  One sharp answer says more than another polished profile paragraph.
-                </p>
-              </div>
-
-              <div className="control-bar">
-                <div className="control-status">
-                  <span className="live-dot" />
-                  <span>REC</span>
-                  <span className="time-stamp">00:57</span>
+              <div className="control-bar control-bar-simple">
+                <div className="control-copy">
+                  <span>Recruiter beta</span>
+                  <strong>Apply now. We review profiles before sharing them with hiring teams.</strong>
                 </div>
-
-                <div className="progress-track" aria-hidden="true">
-                  <span className="progress-fill" />
-                </div>
-
                 <div className="control-actions">
-                  <button className="secondary-button" type="button">
-                    Retake
-                  </button>
                   <a className="capture-button" id="signup" href="/record">
-                    Record your first answer
+                    Apply to join
                   </a>
                 </div>
               </div>
@@ -133,46 +100,65 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section container" id="how-it-works">
-        <div className="section-copy">
-          <p className="section-label">How it works</p>
-          <h2>One question to get on the radar.</h2>
-          <p>
-            The first version should feel direct: answer a concrete recruiter question, show how
-            you think, and become discoverable without pretending the system is more complex than it
-            is.
-          </p>
+      <section className="rhythm-section container" id="how-it-works">
+        <div className="rhythm-copy">
+          <p className="section-label">Why it works</p>
+          <h2>Recruiting craft is easier to trust when you can see it.</h2>
         </div>
 
-        <div className="card-grid">
-          {HOW_IT_WORKS.map((step, index) => (
-            <article key={step.title} className="info-card">
-              <span className="card-index">0{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
+        <div className="prompt-showcase">
+          <span className="prompt-label">First prompt</span>
+          <p>How do you approach candidate sourcing?</p>
+          <div className="signal-row">
+            <span>Sourcing judgment</span>
+            <span>Market read</span>
+            <span>Communication</span>
+          </div>
         </div>
       </section>
 
-      <section className="content-section container content-section-secondary">
-        <div className="section-copy">
-          <p className="section-label">Discovery</p>
-          <h2>Signal that feels earned, not self-reported.</h2>
+      <section className="flow-strip container" aria-label="Humanevals beta flow">
+        {PROCESS_STEPS.map((step, index) => (
+          <div key={step.title} className="flow-step">
+            <span>0{index + 1}</span>
+            <strong>{step.title}</strong>
+            <p>{step.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="proof-section container">
+        <div className="proof-copy">
+          <p className="section-label">What hiring teams see</p>
+          <h2>A sharper read than another LinkedIn profile.</h2>
           <p>
-            Humanevals should read as premium and credible because the mechanic is legible. The
-            recruiter records. The answer gets watched. The best people get noticed.
+            Every profile starts with the same prompt, a short recruiter answer, and the
+            signals teams should watch for.
           </p>
         </div>
 
-        <div className="card-grid">
-          {DISCOVERY_SIGNALS.map((signal) => (
-            <article key={signal.title} className="info-card info-card-accent">
-              <span className="card-tag">{signal.label}</span>
-              <h3>{signal.title}</h3>
-              <p>{signal.body}</p>
-            </article>
-          ))}
+        <div className="profile-read">
+          <div className="profile-read-header">
+            <span>Approved profile</span>
+            <strong>Candidate sourcing answer</strong>
+          </div>
+
+          <div className="answer-sample">
+            <span>Sample answer</span>
+            <p>
+              "I start by mapping where the strongest candidates are likely to be overlooked,
+              then test two sourcing channels before scaling outreach."
+            </p>
+          </div>
+
+          <div className="signal-stack">
+            {HIRING_TEAM_SIGNALS.map((signal) => (
+              <div key={signal.label} className="signal-item">
+                <strong>{signal.label}</strong>
+                <span>{signal.body}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
