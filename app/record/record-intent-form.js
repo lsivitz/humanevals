@@ -1,12 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { useFormAnalytics } from "../project-analytics";
 
 export default function RecordIntentForm() {
   const [submitted, setSubmitted] = useState(false);
+  const analytics = useFormAnalytics({ page: "/record" });
 
   function handleSubmit(event) {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    analytics.trackSubmitAttempt({
+      persona: String(formData.get("role") || "unknown").toLowerCase(),
+      intent: String(formData.get("intent") || "unknown"),
+    });
+    const submission = {
+      id: crypto.randomUUID(),
+      name: formData.get("name"),
+      email: formData.get("email"),
+      profile: formData.get("profile"),
+      role: formData.get("role"),
+      intent: formData.get("intent"),
+      answer: formData.get("answer"),
+      createdAt: new Date().toISOString(),
+    };
+
+    const existing = JSON.parse(localStorage.getItem("humanevals-intents") || "[]");
+    localStorage.setItem("humanevals-intents", JSON.stringify([submission, ...existing]));
+    analytics.trackCompleted({
+      persona: String(submission.role || "unknown").toLowerCase(),
+      intent: String(submission.intent || "unknown"),
+    });
     setSubmitted(true);
   }
 
@@ -27,7 +51,7 @@ export default function RecordIntentForm() {
   }
 
   return (
-    <form className="record-form" onSubmit={handleSubmit}>
+    <form className="record-form" onChange={analytics.onChange} onSubmit={handleSubmit}>
       <label>
         <span>Name</span>
         <input name="name" autoComplete="name" required placeholder="Ari Patel" />
@@ -53,6 +77,19 @@ export default function RecordIntentForm() {
           required
           placeholder="https://linkedin.com/in/..."
         />
+      </label>
+
+      <label>
+        <span>Which best describes you?</span>
+        <select name="role" required defaultValue="">
+          <option value="" disabled>
+            Choose one
+          </option>
+          <option value="Recruiter">Recruiter</option>
+          <option value="Manager">Manager</option>
+          <option value="Founder">Founder</option>
+          <option value="Other">Other</option>
+        </select>
       </label>
 
       <label>

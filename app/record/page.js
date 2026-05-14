@@ -3,10 +3,12 @@ export const metadata = {
 };
 
 import RecordIntentForm from "./record-intent-form";
+import { PageView } from "../project-analytics";
 
 export default function RecordPage() {
   return (
     <main className="record-page">
+      <PageView page="/record" />
       <div className="record-shell">
         <a className="record-back" href="/">
           Back to landing page

@@ -1,3 +1,5 @@
+import { PageView, TrackLink } from "./project-analytics";
+
 const PROCESS_STEPS = [
   {
     title: "Record",
@@ -37,6 +39,7 @@ const TRUST_MARKERS = [
 export default function Home() {
   return (
     <main className="page-shell">
+      <PageView page="/" />
       <div className="ambient ambient-left" />
       <div className="ambient ambient-right" />
 
@@ -44,9 +47,9 @@ export default function Home() {
         <a className="wordmark" href="/">
           Humanevals
         </a>
-        <a className="nav-link" href="/record">
+        <TrackLink className="nav-link" href="/record" page="/" properties={{ placement: "header_apply" }}>
           Apply
-        </a>
+        </TrackLink>
       </header>
 
       <section className="hero container">
@@ -82,9 +85,9 @@ export default function Home() {
                   <strong>Apply now. We review profiles before sharing them with hiring teams.</strong>
                 </div>
                 <div className="control-actions">
-                  <a className="capture-button" id="signup" href="/record">
+                  <TrackLink className="capture-button" href="/record" page="/" properties={{ placement: "hero_apply" }}>
                     Apply to join
-                  </a>
+                  </TrackLink>
                 </div>
               </div>
             </div>
